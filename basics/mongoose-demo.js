@@ -22,7 +22,19 @@ process.on('SIGINT', () => {
 })
 
 async function insert() {
-    let brkfstSchema = BreakFastSchema({eggs: 7, drink: 'Tea'})
+    let brkfstSchema = BreakFastSchema({eggs: 7, drink: 'Water'})
     await brkfstSchema.save();
-    console.log('Created Entry : ' + {eggs: 7, drink: 'Tea'});
+    console.log('Created Entry : ' + {eggs: 7, drink: 'Water'});
 }
+
+async function insertMany() {
+    const items = [{eggs: 7, drink: 'Water'}, {eggs: 8, drink: 'Water'}, {eggs: 9, drink: 'Water'}]
+    items.forEach(async function(entry) {
+        let brkfstSchema = BreakFastSchema(entry)
+        await brkfstSchema.save();
+        console.log('Created Entry : ' + entry);
+    })
+}
+
+
+insertMany().then()
